@@ -1,3 +1,4 @@
+import com.sun.org.apache.xalan.internal.utils.FeatureManager;
 import com.sun.org.apache.xpath.internal.Arg;
 
 /**
@@ -6,15 +7,22 @@ import com.sun.org.apache.xpath.internal.Arg;
 public class String3SamesEnds {
 
     public static String sameEnds(String string){
-        String result = "";
-        for (int i = 0; i < string.length(); i++) {
-            if (string.charAt(i) == string.charAt(string.length()-i)){
-                result.
+        int len = string.length();
+        String fin = "";
+        String tmp = "";
+
+        for (int i = 0; i < len; i++) {
+            tmp += string.charAt(i);
+            int tmplen = tmp.length();
+            if (i < len / 2 && tmp.equals(string.substring(len - tmplen, len))){
+                fin = tmp;
             }
         }
+        return fin;
     }
 
     public static void main(String[] args){
-
+        String test = sameEnds("abXYab");
+        System.out.println(test);
     }
 }
